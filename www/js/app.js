@@ -86,6 +86,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+    .state('app.home.main', {
+      url: "/main",
+      views: {
+        'home-tab': {
+          templateUrl: "views/home/main.html",
+          controller: 'HomeCtrl'
+        }
+      }
+    })
     .state('app.home.sell', {
       url: "/sell/new",
       views: {
@@ -96,5 +105,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app/home/main');
 });
