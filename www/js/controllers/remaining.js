@@ -360,10 +360,11 @@ angular.module('starter.controllers')
       $scope.purchaseItems.forEach(function(item){
         $scope.total = $scope.total + item.cp
       })
+      // alert('total is : '+$scope.total)
     }
     $scope.test = function(){
-      alert(JSON.stringify($scope.purchaseItems[0]))
-      console.log(JSON.stringify($scope.purchaseItems[0]))
+      alert(JSON.stringify($scope.purchaseItems))
+      console.log(JSON.stringify($scope.purchaseItems))
     }
 
 

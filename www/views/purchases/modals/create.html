@@ -12,7 +12,7 @@
 	  </label>
 	  <label class="item item-input item-stacked-label">
 	  	<span class="input-label">Total</span>
-	    <input disabled ng-model="newClient.total" type="text" ng-value="total">
+	    <input disabled ng-model="newClient.total" type="text" placeholder="{{total}}">
 	  </label>
 	  <label class="item item-input item-stacked-label">
 	  	<span class="input-label">Paid</span>
@@ -27,21 +27,21 @@
 	  
 
 	  <ion-list can-swipe="true"> 
-	      	<ion-item ng-repeat="entry in purchaseItems track by $index">
+	      	<ion-item ng-repeat="entry in purchaseItems track by $index" ng-init="$rowIndex = $index">
 	      		<div class="row">
 	      			<div class="col">
 	      				<label class="item item-input item-select">
-						  	<span class="input-label">#{{$index+1}}.</span>
+						  	<span class="input-label">#{{$rowIndex+1}}.</span>
 						  	<br>
-						    <!-- <select ng-model="entry" ng-change="calculateTotal()">
+						    <!-- <select ng-model="purchaseItems[$index]" ng-change="calculateTotal()">
 						    	<option ng-repeat="product in products track by $index" ng-value="product">{{product.name}}</option>
 						    </select> -->
-						    <select ng-model="purchaseItems[$index]" ng-change="calculateTotal()" ng-options="product as product.name for product in products track by $index"></select>
+						    <select ng-model="purchaseItems[$rowIndex]" ng-change="calculateTotal()" ng-options="product as product.name for product in products"></select>
 						</label> 
 	      			</div>
 	      			<div class="col">
 	      				<!-- <pre>{{entry}}</pre> -->
-	      				<span>BDT <pre>dd</pre></span>
+	      				<span>BDT <pre>{{purchaseItems[$rowIndex].cp}}</pre></span>
 	      			</div>
 	      		</div>
 	          
