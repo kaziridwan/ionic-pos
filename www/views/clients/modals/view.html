@@ -1,0 +1,22 @@
+<ion-modal-view>
+	<ion-header-bar>
+	  <h1 class="title">Client Record</h1>
+	</ion-header-bar>
+	<ion-content>
+	<div class="list">
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Name</span>
+	    <input disabled ng-model="currentClient.name" type="text" placeholder="Enter Your Full Name">
+	  </label>
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Phone</span>
+	    <input disabled ng-model="currentClient.phone" type="text" placeholder="Enter Your Phone Number">
+	  </label>
+	</div>
+	<div class="row">
+		<div class="col">
+			<button class="button button-full button-dark" ng-click="closeViewModal()">Close</button>
+		</div>
+	</div>
+	</ion-content>
+</ion-modal-view>

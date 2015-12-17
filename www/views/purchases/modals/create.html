@@ -1,0 +1,71 @@
+<ion-modal-view>
+	<ion-header-bar>
+	  <h1 class="title">Add a Purchase</h1>
+	</ion-header-bar>
+	<ion-content class="padding">
+	<div class="list">
+	  <label class="item item-input item-select">
+	  	<span class="input-label">Name</span>
+	    <select ng-model="newClient.vendor">
+	    	<option ng-repeat="vendor in vendors track by $index">{{vendor.name}}</option>
+	    </select>
+	  </label>
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Total</span>
+	    <input disabled ng-model="newClient.total" type="text" ng-value="total">
+	  </label>
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Paid</span>
+	    <input ng-model="newClient.paid" type="text" placeholder="">
+	  </label>
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Due</span>
+	    <input ng-model="newClient.due" type="text" placeholder="">
+	  </label>
+	  <button class="button button-calm button-block" ng-click="addProduct()">Add Products +</button>
+	  <button class="button button-calm button-block" ng-click="test()">test</button>
+	  
+
+	  <ion-list can-swipe="true"> 
+	      	<ion-item ng-repeat="entry in purchaseItems track by $index">
+	      		<div class="row">
+	      			<div class="col">
+	      				<label class="item item-input item-select">
+						  	<span class="input-label">#{{$index+1}}.</span>
+						  	<br>
+						    <!-- <select ng-model="entry" ng-change="calculateTotal()">
+						    	<option ng-repeat="product in products track by $index" ng-value="product">{{product.name}}</option>
+						    </select> -->
+						    <select ng-model="purchaseItems[$index]" ng-change="calculateTotal()" ng-options="product as product.name for product in products track by $index"></select>
+						</label> 
+	      			</div>
+	      			<div class="col">
+	      				<!-- <pre>{{entry}}</pre> -->
+	      				<span>BDT <pre>dd</pre></span>
+	      			</div>
+	      		</div>
+	          
+		  	  <ion-option-button class="button-assertive" ng-click="deleteClient($index)"> Delete </ion-option-button>
+		  	  <ion-option-button class="button-calm" ng-click="clientUpdateForm(client,$index)">	Edit </ion-option-button>
+	  		</ion-item>
+	  </ion-list>
+
+
+	  <!-- <label ng-repeat="entry in purchaseItems track by $index" class="item item-input item-select">
+	  	<span class="input-label">#{{$index+1}}.</span>
+	  	<br>
+	    <select ng-model="purchaseItems[$index]" ng-change="calculateTotal()">
+	    	<option ng-repeat="product in products track by $index" >{{product.name}}</option>
+	    </select>
+	  </label> -->
+	</div>
+	<div class="row">
+		<div class="col">
+			<button class="button button-full button-dark" ng-click="closeModal()">Cancel</button>
+		</div>
+		<div class="col">
+			<button class="button button-full button-positive" ng-click="addClient(newClient)">Create</button>
+		</div>
+	</div>
+	</ion-content>
+</ion-modal-view>

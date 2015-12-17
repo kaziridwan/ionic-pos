@@ -9,26 +9,41 @@
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
-    <ion-nav-view name="menuContent"></ion-nav-view>
+    <ion-nav-view name="menuContent" class="padding"></ion-nav-view>
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <a href="#app/home"><h1 class="title">Menu</h1></a>
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
+        <!-- <ion-item menu-close ng-click="login()">
           Login
         </ion-item>
         <ion-item menu-close href="#/app/search">
           Search
+        </ion-item> -->
+        <ion-item menu-close href="#/app/home">
+          Home
         </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
+        <ion-item menu-close href="#/app/sells">
+          Sales
         </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
+        <ion-item menu-close href="#/app/purchases">
+          Purchases
+        </ion-item>
+        <ion-item menu-close href="#/app/vendors">
+          Vendors
+        </ion-item>
+        <ion-item menu-close href="#/app/clients">
+          Clients
+        </ion-item>
+        <ion-item menu-close href="#/app/products">
+          Inventory
+        </ion-item>
+        <ion-item menu-close href="#/app/account">
+          Account
         </ion-item>
       </ion-list>
     </ion-content>

@@ -1,0 +1,40 @@
+<ion-modal-view>
+	<ion-header-bar>
+	  <h1 class="title">Update Vendor</h1>
+	</ion-header-bar>
+	<ion-content>
+	<div class="list">
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Name</span>
+	    <input ng-model="currentClient.name" type="text" placeholder="Enter Your Full Name">
+	  </label>
+	  
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Quantity</span>
+	    <input  ng-model="currentClient.qty" type="text" >
+	  </label>
+	  <div class="row">
+	  	<div class="col">
+		  <label class="item item-input item-stacked-label">
+		  	<span class="input-label">Selling Price</span>
+		    <input  ng-model="currentClient.sp" type="text" >
+	  		</label>
+	  	</div>
+	  	<div class="col">
+		  <label class="item item-input item-stacked-label">
+		  	<span class="input-label">Cost Price</span>
+		    <input  ng-model="currentClient.cp" type="text" >
+		  </label>
+	  	</div>	
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<button class="button button-full button-dark" ng-click="closeEditModal()">Cancel</button>
+		</div>
+		<div class="col">
+			<button class="button button-full button-positive" ng-click="updateClient()">Save</button>
+		</div>
+	</div>
+	</ion-content>
+</ion-modal-view>

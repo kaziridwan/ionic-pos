@@ -1,0 +1,58 @@
+<ion-modal-view>
+	<ion-header-bar>
+	  <h1 class="title">Purchase Record</h1>
+	</ion-header-bar>
+	<ion-content>
+	<div class="list">
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Name</span>
+	    <input disabled ng-model="currentClient.name" type="text">
+	  </label>
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Date</span>
+	    <input disabled ng-model="currentClient.date" type="text">
+	  </label>
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Total</span>
+	    <input disabled ng-model="currentClient.total" type="text">
+	  </label>
+	  <div class="row">
+	  	<div class="col">
+		  <label class="item item-input item-stacked-label">
+		  	<span class="input-label">Paid</span>
+		    <input disabled ng-model="currentClient.total" type="text">
+	  		</label>
+	  	</div>
+	  	<div class="col">
+		  <label class="item item-input item-stacked-label">
+		  	<span class="input-label">Due</span>
+		    <input disabled ng-model="currentClient.due" type="text">
+		  </label>
+	  	</div>	
+	  </div>
+
+  	<label class="item item-input item-stacked-label">
+	  	<span class="input-label"><u>Products</u></span>
+	  	<span class="row">
+	  		<span class="col">
+	  			<span class="input-label">Name</span>
+	    		<input disabled ng-repeat="product in currentClient.products track by $index" type="text" ng-value="product.name">
+	  		</span>
+	  		<span class="col">
+	  			<span class="input-label">Cost Price (BDT)</span>
+	    		<input disabled ng-repeat="product in currentClient.products track by $index" type="text" ng-value="product.cp" style="text-align:right">
+	  		</span>
+	  		<span class="col">
+	  			<span class="input-label">Selling Price (BDT)</span>
+	    		<input disabled ng-repeat="product in currentClient.products track by $index" type="text" ng-value="product.sp" style="text-align:right">
+	  		</span>
+	  	</span>
+  	</label>
+	</div>
+	<div class="row">
+		<div class="col">
+			<button class="button button-full button-dark" ng-click="closeViewModal()">Close</button>
+		</div>
+	</div>
+	</ion-content>
+</ion-modal-view>

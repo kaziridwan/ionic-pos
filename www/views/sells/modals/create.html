@@ -1,0 +1,36 @@
+<ion-modal-view>
+	<ion-header-bar>
+	  <h1 class="title">Add a Purchase</h1>
+	</ion-header-bar>
+	<ion-content>
+	<div class="list">
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Name</span>
+	    <select ng-model="newClient.vendor">
+	    	<option ng-repeat="vendor in vendors track by $index">{{vendor.name}}</option>
+	    </select>
+	  </label>
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Total</span>
+	    <input ng-model="newClient.total" type="text" placeholder="">
+	  </label>
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Paid</span>
+	    <input ng-model="newClient.paid" type="text" placeholder="">
+	  </label>
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Due</span>
+	    <!-- <input ng-model="newClient.due" type="text" placeholder=""> -->
+	    <span>{{newClient.paid}}</span>
+	  </label>
+	</div>
+	<div class="row">
+		<div class="col">
+			<button class="button button-full button-dark" ng-click="closeModal()">Cancel</button>
+		</div>
+		<div class="col">
+			<button class="button button-full button-positive" ng-click="addClient(newClient)">Create</button>
+		</div>
+	</div>
+	</ion-content>
+</ion-modal-view>

@@ -1,0 +1,25 @@
+<ion-modal-view>
+	<ion-header-bar>
+	  <h1 class="title">Create New Vendor</h1>
+	</ion-header-bar>
+	<ion-content>
+	<div class="list">
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Name</span>
+	    <input ng-model="newClient.name" type="text" placeholder="Enter Your Full Name">
+	  </label>
+	  <label class="item item-input item-stacked-label">
+	  	<span class="input-label">Phone</span>
+	    <input ng-model="newClient.phone" type="text" placeholder="Enter Your Phone Number">
+	  </label>
+	</div>
+	<div class="row">
+		<div class="col">
+			<button class="button button-full button-dark" ng-click="closeModal()">Cancel</button>
+		</div>
+		<div class="col">
+			<button class="button button-full button-positive" ng-click="addClient(newClient)">Create</button>
+		</div>
+	</div>
+	</ion-content>
+</ion-modal-view>

@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -104,6 +104,55 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+  //resources
+  //client
+  .state('app.clients', {
+    url: "/clients",
+    views: {
+      'menuContent': {
+        templateUrl: 'views/clients/index.html',
+        controller: 'ClientCtrl'
+      }
+    }
+  })
+  .state('app.vendors', {
+    url: "/vendors",
+    views: {
+      'menuContent': {
+        templateUrl: 'views/vendors/index.html',
+        controller: 'VendorCtrl'
+      }
+    }
+  })
+  .state('app.purchases', {
+    url: "/purchases",
+    views: {
+      'menuContent': {
+        templateUrl: 'views/purchases/index.html',
+        controller: 'PurchaseCtrl'
+      }
+    }
+  })
+  .state('app.sells', {
+    url: "/sells",
+    views: {
+      'menuContent': {
+        templateUrl: 'views/sells/index.html',
+        controller: 'SellCtrl'
+      }
+    }
+  })
+  .state('app.products', {
+    url: "/products",
+    views: {
+      'menuContent': {
+        templateUrl: 'views/products/index.html',
+        controller: 'ProductCtrl'
+      }
+    }
+  })
+
+    
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home/main');
 });
