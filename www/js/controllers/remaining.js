@@ -271,6 +271,7 @@ angular.module('starter.controllers')
 
 
     $scope.currentClient = null;
+    $scope.newClient = {vendor:null,total:null,paid:null,due:null,name:null}; 
     $scope.currentIndex = null;
     $scope.purchaseItems = [];
     $scope.total = 0;
@@ -358,25 +359,41 @@ angular.module('starter.controllers')
       console.log('calc')
       $scope.total = 0
       $scope.purchaseItems.forEach(function(item){
-        $scope.total = $scope.total + item.cp
+        $scope.total = $scope.total + parseInt(item.cp)
       })
+      $scope.newClient.total = $scope.total
       // alert('total is : '+$scope.total)
     }
+    $scope.calculateDue = function(){
+      $scope.newClient.due = $scope.newClient.total - $scope.newClient.paid
+      // alert('total is : '+$scope.total)
+    }
+    $scope.deleteProduct = function(index){
+      if (index > -1) {
+        $scope.purchaseItems.splice(index, 1);
+
+        $scope.calculateTotal()
+        $scope.calculateDue()
+        $scope.updateStorage()
+      }
+    }
     $scope.test = function(){
-      alert(JSON.stringify($scope.purchaseItems))
-      console.log(JSON.stringify($scope.purchaseItems))
+      alert(JSON.stringify($scope.newClient))
+      console.log(JSON.stringify($scope.newClient))
     }
 
 
 
 
     //CRUD
-    $scope.addClient = function (clientInfo) {
-      clientInfo.id = $scope.lastIndex() + 1
-      newClient = {}
-      newClient.id = clientInfo.id
-      newClient.name = clientInfo.name
-      newClient.phone = clientInfo.phone
+    $scope.addPurchase = function () {
+      $scope.newClient.id = $scope.lastIndex() + 1
+      $scope.newClient.name = $scope.newClient.vendor
+      $scope.newClient.date = new Date().toLocaleString()
+      $scope.newClient.products = $scope.purchaseItems
+
+      newClient = angular.copy($scope.newClient)
+
       $scope.clients.push(newClient)
 
       $scope.updateStorage()
@@ -396,7 +413,7 @@ angular.module('starter.controllers')
       if (index > -1) {
         $scope.clients.splice(index, 1);
         $scope.updateStorage()
-    }
+      }
     }
 
 
