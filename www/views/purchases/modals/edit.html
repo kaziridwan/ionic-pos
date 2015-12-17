@@ -6,30 +6,30 @@
 	<div class="list">
 	  <label class="item item-input item-select">
 	  	<span class="input-label">Name</span>
-	    <!-- <select ng-model="newClient.vendor">
+	    <!-- <select ng-model="currentClient.vendor">
 	    	<option ng-repeat="vendor in vendors track by $index">{{vendor.name}}</option>
 	    </select> -->
-		<select ng-model="newClient.vendor" ng-options="vendor as vendor.name for vendor in vendors"></select>
+		<select ng-model="currentClient.vendor" ng-options="vendor as vendor.name for vendor in vendors"></select>
 
 	  </label>
 	  <label class="item item-input item-stacked-label">
 	  	<span class="input-label">Total</span>
-	    <input disabled ng-model="newClient.total" type="text">
+	    <input disabled ng-model="currentClient.total" type="text">
 	  </label>
 	  <label class="item item-input item-stacked-label">
 	  	<span class="input-label">Paid</span>
-	    <input ng-model="newClient.paid" ng-change="calculateDue()" type="text" placeholder="">
+	    <input ng-model="currentClient.paid" ng-change="calculateEditDue()" type="text" placeholder="">
 	  </label>
 	  <label class="item item-input item-stacked-label">
 	  	<span class="input-label">Due</span>
-	    <input disabled ng-model="newClient.due" type="text" placeholder="">
+	    <input disabled ng-model="currentClient.due" type="text" placeholder="">
 	  </label>
-	  <button class="button button-calm button-block" ng-click="addProduct()">Add Products +</button>
-	  <button class="button button-calm button-block" ng-click="test()">test</button>
+	  <button class="button button-calm button-block" ng-click="addEditProduct()">Add Products +</button>
+	  <button class="button button-calm button-block" ng-click="editTest()">test</button>
 	  
 
 	  <ion-list can-swipe="true"> 
-	      	<ion-item ng-repeat="entry in purchaseItems track by $index" ng-init="$rowIndex = $index">
+	      	<ion-item ng-repeat="entry in currentClient.products track by $index" ng-init="$rowIndex = $index">
 	      		<div class="row">
 	      			<div class="col">
 	      				<label class="item item-input item-select">
@@ -38,16 +38,20 @@
 						    <!-- <select ng-model="purchaseItems[$index]" ng-change="calculateTotal()">
 						    	<option ng-repeat="product in products track by $index" ng-value="product">{{product.name}}</option>
 						    </select> -->
-						    <select ng-model="purchaseItems[$rowIndex]" ng-change="calculateTotal()" ng-options="product as product.name for product in products"></select>
+						    <select ng-model="currentClient.products[$rowIndex]" ng-change="calculateEditTotal()" ng-options="product as product.name for product in products"></select>
 						</label> 
 	      			</div>
 	      			<div class="col">
 	      				<!-- <pre>{{entry}}</pre> -->
-	      				<span>BDT <pre>{{purchaseItems[$rowIndex].cp}}</pre></span>
+	      				<span><pre>{{currentClient.products[$rowIndex].name}}</pre></span>
+	      			</div>
+	      			<div class="col">
+	      				<!-- <pre>{{entry}}</pre> -->
+	      				<span><pre>: BDT {{currentClient.products[$rowIndex].cp}}</pre></span>
 	      			</div>
 	      		</div>
 	          
-		  	  <ion-option-button class="button-assertive" ng-click="deleteProduct($rowIndex)"> Delete </ion-option-button>
+		  	  <ion-option-button class="button-assertive" ng-click="deleteEditProduct($rowIndex)"> Delete </ion-option-button>
 	  		</ion-item>
 	  </ion-list>
 
@@ -65,7 +69,7 @@
 			<button class="button button-full button-dark" ng-click="closeEditModal()">Cancel</button>
 		</div>
 		<div class="col">
-			<button class="button button-full button-positive" ng-click="addPurchase()">Create</button>
+			<button class="button button-full button-balanced" ng-click="updatePurchase()">Save</button>
 		</div>
 	</div>
 	</ion-content>

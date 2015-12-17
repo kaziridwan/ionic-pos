@@ -306,6 +306,7 @@ angular.module('starter.controllers')
     $scope.clientUpdateForm = function(client, index) {
       $scope.currentClient = client;
       $scope.currentIndex = index;
+      // alert('index is '+ index)
         $scope.updateModal.show();
     };
     $scope.closeEditModal = function() {
@@ -363,6 +364,8 @@ angular.module('starter.controllers')
       })
       $scope.newClient.total = $scope.total
       // alert('total is : '+$scope.total)
+      $scope.calculateDue()
+
     }
     $scope.calculateDue = function(){
       $scope.newClient.due = $scope.newClient.total - $scope.newClient.paid
@@ -374,6 +377,34 @@ angular.module('starter.controllers')
 
         $scope.calculateTotal()
         $scope.calculateDue()
+        $scope.updateStorage()
+      }
+    }
+
+      //for edit
+    $scope.addEditProduct = function(){
+      $scope.currentClient.products.push({})
+    }
+    $scope.calculateEditTotal = function(){
+      console.log('calc')
+      $scope.total = 0
+      $scope.currentClient.products.forEach(function(item){
+        $scope.total = $scope.total + parseInt(item.cp)
+      })
+      $scope.currentClient.total = $scope.total
+      // alert('total is : '+$scope.total)
+      $scope.calculateEditDue()
+    }
+    $scope.calculateEditDue = function(){
+      $scope.currentClient.due = $scope.currentClient.total - $scope.currentClient.paid
+      // alert('total is : '+$scope.total)
+    }
+    $scope.deleteEditProduct = function(index){
+      if (index > -1) {
+        $scope.currentClient.products.splice(index, 1);
+
+        $scope.calculateEditTotal()
+        $scope.calculateEditDue()
         $scope.updateStorage()
       }
     }
@@ -401,10 +432,10 @@ angular.module('starter.controllers')
 
     }
 
-    $scope.updateClient = function(){
-      $scope.clients[$scope.currentIndex].name = $scope.currentClient.name
-      $scope.clients[$scope.currentIndex].phone = $scope.currentClient.phone
-      
+    $scope.updatePurchase = function(){
+      currentClient = angular.copy($scope.currentClient)
+      $scope.clients[$scope.currentIndex] = currentClient
+
       $scope.updateStorage()
       $scope.closeEditModal()
     }
