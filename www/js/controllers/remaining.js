@@ -254,7 +254,6 @@ angular.module('starter.controllers')
     $scope.clients = [{
       "id": 1,
       "name": "Md. Kashem",
-      "vendor_id": 0, //index
       "vendor": {"name":"Md. Kashem", "phone":"0171"},
       "date": "12/14/2015, 3:15:00 PM",
       "products":[
@@ -266,12 +265,13 @@ angular.module('starter.controllers')
       "paid":20,
       "due":30
     }]
+    $scope.clients = $localstorage.getObj('purchases')//al
     $scope.vendors = $localstorage.getObj('vendors')
     $scope.products = $localstorage.getObj('products')
 
 
     $scope.currentClient = null;
-    $scope.newClient = {vendor:null,total:null,paid:null,due:null,name:null}; 
+    $scope.newClient = {vendor:null,total:null,paid:null,due:null,name:null,products:[]}; 
     $scope.currentIndex = null;
     $scope.purchaseItems = [];
     $scope.total = 0;
@@ -349,16 +349,16 @@ angular.module('starter.controllers')
       }
     }
     $scope.updateStorage = function(){
-      $localstorage.setObj('vendors',$scope.clients)
+      $localstorage.setObj('purchases',$scope.clients)
     }
 
     $scope.addProduct = function(){
-      $scope.purchaseItems.push({})
+      $scope.newClient.products.push({})
     }
     $scope.calculateTotal = function(){
       console.log('calc')
       $scope.total = 0
-      $scope.purchaseItems.forEach(function(item){
+      $scope.newClient.products.forEach(function(item){
         $scope.total = $scope.total + parseInt(item.cp)
       })
       $scope.newClient.total = $scope.total
@@ -370,7 +370,7 @@ angular.module('starter.controllers')
     }
     $scope.deleteProduct = function(index){
       if (index > -1) {
-        $scope.purchaseItems.splice(index, 1);
+        $scope.newClient.products.splice(index, 1);
 
         $scope.calculateTotal()
         $scope.calculateDue()
@@ -388,9 +388,9 @@ angular.module('starter.controllers')
     //CRUD
     $scope.addPurchase = function () {
       $scope.newClient.id = $scope.lastIndex() + 1
-      $scope.newClient.name = $scope.newClient.vendor
+      $scope.newClient.name = $scope.newClient.vendor.name
       $scope.newClient.date = new Date().toLocaleString()
-      $scope.newClient.products = $scope.purchaseItems
+      // $scope.newClient.products = $scope.purchaseItems
 
       newClient = angular.copy($scope.newClient)
 

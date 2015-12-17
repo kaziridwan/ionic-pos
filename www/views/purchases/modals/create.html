@@ -6,9 +6,11 @@
 	<div class="list">
 	  <label class="item item-input item-select">
 	  	<span class="input-label">Name</span>
-	    <select ng-model="newClient.vendor">
+	    <!-- <select ng-model="newClient.vendor">
 	    	<option ng-repeat="vendor in vendors track by $index">{{vendor.name}}</option>
-	    </select>
+	    </select> -->
+		<select ng-model="newClient.vendor" ng-options="vendor as vendor.name for vendor in vendors"></select>
+
 	  </label>
 	  <label class="item item-input item-stacked-label">
 	  	<span class="input-label">Total</span>
@@ -27,7 +29,7 @@
 	  
 
 	  <ion-list can-swipe="true"> 
-	      	<ion-item ng-repeat="entry in purchaseItems track by $index" ng-init="$rowIndex = $index">
+	      	<ion-item ng-repeat="entry in newClient.products track by $index" ng-init="$rowIndex = $index">
 	      		<div class="row">
 	      			<div class="col">
 	      				<label class="item item-input item-select">
@@ -36,12 +38,12 @@
 						    <!-- <select ng-model="purchaseItems[$index]" ng-change="calculateTotal()">
 						    	<option ng-repeat="product in products track by $index" ng-value="product">{{product.name}}</option>
 						    </select> -->
-						    <select ng-model="purchaseItems[$rowIndex]" ng-change="calculateTotal()" ng-options="product as product.name for product in products"></select>
+						    <select ng-model="newClient.products[$rowIndex]" ng-change="calculateTotal()" ng-options="product as product.name for product in products"></select>
 						</label> 
 	      			</div>
 	      			<div class="col">
 	      				<!-- <pre>{{entry}}</pre> -->
-	      				<span>BDT <pre>{{purchaseItems[$rowIndex].cp}}</pre></span>
+	      				<span>BDT <pre>{{newClient.products[$rowIndex].cp}}</pre></span>
 	      			</div>
 	      		</div>
 	          
